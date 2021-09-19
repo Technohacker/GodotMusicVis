@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Floor/Floor.shader" type="Shader" id=1]
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 1000, 400 )
+subdivide_width = 64
+subdivide_depth = 32
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
+shader_param/COLOR_1 = Color( 0.0509804, 0.160784, 0.164706, 1 )
+shader_param/COLOR_2 = Color( 0, 0, 0, 1 )
+
+[node name="Floor" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+use_in_baked_light = true
+mesh = SubResource( 3 )
+material/0 = SubResource( 2 )
