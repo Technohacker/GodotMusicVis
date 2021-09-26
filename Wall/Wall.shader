@@ -33,7 +33,7 @@ float height(vec2 uv) {
 }
 
 void vertex() {
-	vec2 uv = VERTEX.xz + vec2(TIME);
+	vec2 uv = VERTEX.xz + vec2(0, TIME);
 	float h = height(uv);
 	VERTEX.y += h;
 	COLOR.y = VERTEX.y;

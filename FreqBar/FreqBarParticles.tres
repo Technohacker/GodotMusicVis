@@ -1,0 +1,16 @@
+[gd_resource type="ParticlesMaterial" format=2]
+
+[resource]
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_box_extents = Vector3( 0.05, 0.25, 0.125 )
+flag_align_y = true
+direction = Vector3( 0, 0, 1 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5.0
+scale = 1.5
+scale_random = 1.0
+color = Color( 0, 0.988235, 1, 1 )
+hue_variation = 0.22
+hue_variation_random = 0.42

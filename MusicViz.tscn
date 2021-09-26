@@ -1,61 +1,60 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Floor/Floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Wall/Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MusicViz.gd" type="Script" id=3]
 [ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=4]
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="AudioStreamMicrophone" id=1]
+
+[sub_resource type="ParticlesMaterial" id=2]
 lifetime_randomness = 1.0
 emission_shape = 2
 emission_box_extents = Vector3( 100, 40, 0.125 )
 flag_align_y = true
 direction = Vector3( 0, 0, 1 )
-spread = 0.0
+spread = 22.76
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 5.0
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=3]
 flags_unshaded = true
 vertex_color_use_as_albedo = true
 
-[sub_resource type="CubeMesh" id=7]
-material = SubResource( 6 )
-size = Vector3( 0.1, 0.1, 0.1 )
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 3 )
+size = Vector3( 0.117, 0.121, 0.158 )
 
 [node name="MusicViz" type="Spatial"]
 script = ExtResource( 3 )
 
 [node name="FreqBars" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -10 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 73, 0, -10 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 8, 0 )
 current = true
 fov = 115.7
 size = 20.0
 far = 400.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 1 )
+autoplay = true
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
-[node name="Floor" parent="." instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 100, 100, -100 )
+[node name="WallL" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 100, -150 )
 
-[node name="Floor2" parent="." instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -100, 100, -100 )
-
-[node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.463, 0 )
-light_energy = 16.0
-spot_range = 240.389
-spot_angle = 89.99
+[node name="WallR" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 200, 100, -150 )
 
 [node name="Particles" type="Particles" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -30 )
-amount = 10000
-lifetime = 20.0
-process_material = SubResource( 8 )
-draw_pass_1 = SubResource( 7 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 10, -30 )
+amount = 5000
+lifetime = 6.0
+local_coords = false
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 4 )
 
 [connection signal="stream_ready" from="HUD" to="." method="_on_HUD_stream_ready"]

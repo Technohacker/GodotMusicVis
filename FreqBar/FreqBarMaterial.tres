@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode world_vertex_coords,unshaded;
+
+uniform sampler2D GLOBAL_GRADIENT;
+
+void fragment() {
+	ALBEDO = texture(GLOBAL_GRADIENT, SCREEN_UV).rgb;
+}
+"
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 0, 1, 0.976562, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[resource]
+shader = SubResource( 1 )
+shader_param/GLOBAL_GRADIENT = SubResource( 3 )

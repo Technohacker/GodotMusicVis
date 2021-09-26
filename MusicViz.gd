@@ -12,11 +12,11 @@ func _init():
 
 func _ready():
 	count = ORDERS * PER_ORDER_COUNT
+	var bar := preload("res://FreqBar/FreqBar.tscn").instance()
 	for i in count:
-		var bar: Spatial = preload("res://FreqBar/FreqBar.tscn").instance()
-		bar.translation.x = -24.0 + ((i)/3.0)
-		bar.COLOR = Color.from_hsv(0.4 + float(i) / (4.0 * count), 1, 1)
+		bar.translation.x = ((i)/3.0)
 		$FreqBars.add_child(bar)
+		bar = bar.duplicate()
 
 func _process(delta):
 	if $AudioStreamPlayer.playing:
