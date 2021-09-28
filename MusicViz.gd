@@ -7,6 +7,8 @@ const ORDERS = 4
 var spectrum: AudioEffectSpectrumAnalyzerInstance
 var count: int
 
+signal track_finished()
+
 func _init():
 	spectrum = AudioServer.get_bus_effect_instance(0, 0)
 
@@ -39,6 +41,12 @@ func _process(delta):
 				prev_hz = hz
 				i += 1
 
-func _on_HUD_stream_ready(stream: AudioStream):
+func _musicapi_stream_ready(stream):
 	$AudioStreamPlayer.stream = stream
 	$AudioStreamPlayer.play(0)
+
+func _on_AudioStreamPlayer_finished():
+	emit_signal("track_finished")
+
+func _on_MusicAPI_stop_stream():
+	$AudioStreamPlayer.stream = AudioStream.new()

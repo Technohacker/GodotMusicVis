@@ -1,6 +1,12 @@
 extends CanvasLayer
 
-signal stream_ready(stream)
+var MusicAPI
+
+func _ready(): MusicAPI = get_tree().get_nodes_in_group("MusicAPI")[0]
+
+func _input(event):
+	if event.is_action_pressed("toggle_hud"):
+		$HBoxContainer.visible = !$HBoxContainer.visible
 
 func _on_Open_pressed():
 	var file_open = FileDialog.new()
@@ -12,11 +18,8 @@ func _on_Open_pressed():
 	file_open.popup_centered(OS.window_size / 2)
 	
 	var file_path = yield(file_open, "file_selected")
-	var file = File.new()
-	file.open(file_path, File.READ)
-	var buffer = file.get_buffer(file.get_len())
+	MusicAPI.add_song(file_path)
 
-	var stream = AudioStreamMP3.new()
-	stream.data = buffer
-
-	emit_signal("stream_ready", stream)
+func _on_Clear_Playlist_pressed():
+	MusicAPI.clear_queue()
+	pass # Replace with function body.

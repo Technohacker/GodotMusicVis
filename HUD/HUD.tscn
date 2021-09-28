@@ -16,9 +16,16 @@ __meta__ = {
 }
 
 [node name="Open" type="Button" parent="HBoxContainer"]
-margin_left = 467.0
-margin_right = 541.0
+margin_left = 418.0
+margin_right = 492.0
 margin_bottom = 20.0
 text = "Open File"
 
+[node name="Clear Playlist" type="Button" parent="HBoxContainer"]
+margin_left = 496.0
+margin_right = 590.0
+margin_bottom = 20.0
+text = "Clear Playlist"
+
 [connection signal="pressed" from="HBoxContainer/Open" to="." method="_on_Open_pressed"]
+[connection signal="pressed" from="HBoxContainer/Clear Playlist" to="." method="_on_Clear_Playlist_pressed"]

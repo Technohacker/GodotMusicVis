@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Wall/Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://MusicAPI.gd" type="Script" id=2]
 [ext_resource path="res://MusicViz.gd" type="Script" id=3]
 [ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=4]
 
@@ -24,7 +25,9 @@ vertex_color_use_as_albedo = true
 material = SubResource( 3 )
 size = Vector3( 0.117, 0.121, 0.158 )
 
-[node name="MusicViz" type="Spatial"]
+[node name="MusicViz" type="Spatial" groups=[
+"MusicViz",
+]]
 script = ExtResource( 3 )
 
 [node name="FreqBars" type="Spatial" parent="."]
@@ -57,4 +60,11 @@ local_coords = false
 process_material = SubResource( 2 )
 draw_pass_1 = SubResource( 4 )
 
-[connection signal="stream_ready" from="HUD" to="." method="_on_HUD_stream_ready"]
+[node name="MusicAPI" type="Node" parent="." groups=[
+"MusicAPI",
+]]
+script = ExtResource( 2 )
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
+[connection signal="stop_stream" from="MusicAPI" to="." method="_on_MusicAPI_stop_stream"]
+[connection signal="stream_ready" from="MusicAPI" to="." method="_musicapi_stream_ready"]
