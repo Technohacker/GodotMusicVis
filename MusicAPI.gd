@@ -8,7 +8,7 @@ signal stop_stream()
 
 var playlist: Array = []
 var playing_music: bool = false
-var wait_for_track: bool = true
+var wait_for_track: bool = true # Checks if track playing currently is finished
 
 func add_song(song_path: String):
 	playlist.append(song_path)
@@ -20,7 +20,8 @@ func _play_music():
 	for song in playlist:
 		stream_music(song)
 		if wait_for_track:
-			yield(get_parent(), "track_finished")
+			yield(get_node("/root/MusicViz"), "track_finished") # Wait for signal
+		playlist.remove(playlist.find(song))
 	playing_music = false
 	
 func stream_music(song_path):
