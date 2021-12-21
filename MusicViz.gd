@@ -10,6 +10,7 @@ var count: int
 signal track_finished()
 
 func _init():
+	MusicAPI.connect("stream_ready", self, "_musicapi_stream_ready")
 	spectrum = AudioServer.get_bus_effect_instance(0, 0)
 
 func _ready():

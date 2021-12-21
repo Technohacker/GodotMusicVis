@@ -18,6 +18,10 @@ config/icon="res://icon.png"
 
 enable_audio_input=true
 
+[autoload]
+
+MusicAPI="*res://MusicAPI.tscn"
+
 [input]
 
 toggle_hud={
