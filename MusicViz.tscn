@@ -24,7 +24,7 @@ vertex_color_use_as_albedo = true
 material = SubResource( 3 )
 size = Vector3( 0.117, 0.121, 0.158 )
 
-[node name="MusicViz" type="Spatial"]
+[node name="MusicViz" type="Spatial" groups=["MusicViz"]]
 script = ExtResource( 3 )
 
 [node name="FreqBars" type="Spatial" parent="."]
@@ -44,7 +44,7 @@ autoplay = true
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 
 [node name="WallL" parent="." instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 100, -150 )
+transform = Transform( -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 2.48034, 99.642, -151.132 )
 
 [node name="WallR" parent="." instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 200, 100, -150 )
@@ -57,4 +57,4 @@ local_coords = false
 process_material = SubResource( 2 )
 draw_pass_1 = SubResource( 4 )
 
-[connection signal="stream_ready" from="HUD" to="." method="_on_HUD_stream_ready"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
